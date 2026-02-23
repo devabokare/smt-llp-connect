@@ -14,7 +14,7 @@ import {
   ParallaxSection,
 } from "@/components/AnimatedSection";
 import { PageSection, SectionTitle } from "@/components/PageSection";
-import heroBg from "@/assets/hero-bg.jpg";
+import heroVideo from "@/assets/hero-video.mp4";
 
 const highlights = [
   { icon: Cog, title: "Advanced Processes", desc: "Stamping, robotic welding, powder coating & assembly capabilities", count: 6, suffix: "+" },
@@ -39,7 +39,7 @@ const Index = () => {
       <section ref={heroRef} className="relative h-screen flex items-center justify-center overflow-hidden">
         {/* Parallax background */}
         <motion.div style={{ y: heroY, scale: heroScale }} className="absolute inset-0">
-          <img src={heroBg} alt="Manufacturing facility" className="w-full h-full object-cover" />
+          <video src={heroVideo} autoPlay muted loop playsInline className="w-full h-full object-cover" />
         </motion.div>
         <div className="absolute inset-0 bg-hero-overlay" />
 

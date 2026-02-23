@@ -15,6 +15,27 @@ import {
 } from "@/components/AnimatedSection";
 import { PageSection, SectionTitle } from "@/components/PageSection";
 import heroVideo from "@/assets/hero-video.mp4";
+import renomLogo from "@/assets/clients/renom.png";
+import ultraLogo from "@/assets/clients/ultra-engineers.png";
+import aamLogo from "@/assets/clients/aam.png";
+import inoxLogo from "@/assets/clients/inox-wind.png";
+import adaniLogo from "@/assets/clients/adani.png";
+import nelsonLogo from "@/assets/clients/nelson.png";
+import cooperLogo from "@/assets/clients/cooper-corp.png";
+import vassmaanLogo from "@/assets/clients/vassmaan.png";
+import protodLogo from "@/assets/clients/proto-d.png";
+
+const clientLogos = [
+  { name: "Renom", logo: renomLogo },
+  { name: "Ultra Engineers", logo: ultraLogo },
+  { name: "American Axle & Manufacturing", logo: aamLogo },
+  { name: "Inox Wind", logo: inoxLogo },
+  { name: "Adani Renewables", logo: adaniLogo },
+  { name: "Nelson Global Products", logo: nelsonLogo },
+  { name: "Cooper Corp", logo: cooperLogo },
+  { name: "Vassmaan", logo: vassmaanLogo },
+  { name: "Proto-D Engineering", logo: protodLogo },
+];
 
 const highlights = [
   { icon: Cog, title: "Advanced Processes", desc: "Stamping, robotic welding, powder coating & assembly capabilities", count: 6, suffix: "+" },
@@ -257,15 +278,12 @@ const Index = () => {
           >
             {[...Array(2)].map((_, setIdx) => (
               <div key={setIdx} className="flex gap-12 items-center shrink-0">
-                {[
-                  "Tata Motors", "Mahindra", "Bajaj Auto", "Ashok Leyland",
-                  "John Deere", "Cummins", "Kirloskar", "L&T",
-                ].map((client) => (
+                {clientLogos.map((client) => (
                   <div
-                    key={`${setIdx}-${client}`}
-                    className="flex items-center justify-center h-20 w-40 shrink-0 rounded-2xl border border-border/60 bg-card px-6 py-4 grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300"
+                    key={`${setIdx}-${client.name}`}
+                    className="flex items-center justify-center h-20 w-44 shrink-0 rounded-2xl border border-border/60 bg-white px-6 py-4 grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300"
                   >
-                    <span className="text-sm font-semibold text-muted-foreground whitespace-nowrap">{client}</span>
+                    <img src={client.logo} alt={client.name} className="max-h-12 max-w-full object-contain" />
                   </div>
                 ))}
               </div>

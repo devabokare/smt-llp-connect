@@ -17,7 +17,7 @@ const navItems = [
     ],
   },
   { label: "Quality & R&D", path: "/quality" },
-  { label: "Enquiry", path: "/enquiry" },
+  { label: "Contact", path: "/contact" },
   { label: "Careers", path: "/careers" },
 ];
 

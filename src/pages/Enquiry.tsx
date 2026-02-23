@@ -1,49 +1,42 @@
 import { useState, FormEvent } from "react";
 import Layout from "@/components/Layout";
-import { PageSection, SectionTitle } from "@/components/PageSection";
-import { FadeInUp, SlideInLeft, SlideInRight } from "@/components/AnimatedSection";
+import { PageSection, PageHero } from "@/components/PageSection";
+import { FadeInUp, SlideInLeft, SlideInRight, MagneticHover } from "@/components/AnimatedSection";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { motion } from "framer-motion";
 import { useToast } from "@/hooks/use-toast";
 
 const Enquiry = () => {
   const { toast } = useToast();
   const [form, setForm] = useState({ name: "", company: "", email: "", phone: "", requirements: "" });
   const [sending, setSending] = useState(false);
+  const [focused, setFocused] = useState<string | null>(null);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     setSending(true);
-    // Simulate submission
     setTimeout(() => {
       setSending(false);
-      toast({
-        title: "Enquiry Submitted",
-        description: "Thank you! Our team will contact you shortly.",
-      });
+      toast({ title: "Enquiry Submitted", description: "Thank you! Our team will contact you shortly." });
       setForm({ name: "", company: "", email: "", phone: "", requirements: "" });
     }, 1000);
   };
 
+  const inputClass = (key: string) =>
+    `w-full px-5 py-3.5 rounded-2xl border bg-card text-foreground outline-none transition-all duration-300 ${
+      focused === key ? "border-secondary shadow-glow ring-2 ring-secondary/20" : "border-border hover:border-steel-light"
+    }`;
+
   return (
     <Layout>
-      <section className="bg-navy py-20 md:py-28 px-4">
-        <div className="container max-w-7xl mx-auto text-center">
-          <FadeInUp>
-            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-4">
-              Sales <span className="text-secondary">Enquiry</span>
-            </h1>
-            <p className="text-primary-foreground/60 text-lg max-w-2xl mx-auto">
-              Get in touch with our team for manufacturing solutions
-            </p>
-          </FadeInUp>
-        </div>
-      </section>
+      <PageHero title="Sales" highlight="Enquiry" subtitle="Get in touch with our team for manufacturing solutions" />
 
       <PageSection>
-        <div className="grid md:grid-cols-2 gap-12">
+        <div className="grid md:grid-cols-2 gap-16">
           <SlideInLeft>
-            <h2 className="font-display text-2xl md:text-3xl font-bold mb-6">Send Us a Message</h2>
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <span className="text-xs font-semibold uppercase tracking-widest text-secondary mb-4 block">Send a Message</span>
+            <h2 className="font-display text-2xl md:text-3xl font-bold mb-8">How can we help?</h2>
+            <form onSubmit={handleSubmit} className="space-y-5">
               {[
                 { key: "name", label: "Full Name", type: "text" },
                 { key: "company", label: "Company", type: "text" },
@@ -51,86 +44,94 @@ const Enquiry = () => {
                 { key: "phone", label: "Phone", type: "tel" },
               ].map((f) => (
                 <div key={f.key}>
-                  <label className="block text-sm font-medium mb-1.5">{f.label}</label>
+                  <label className="block text-sm font-medium mb-2 text-foreground/80">{f.label}</label>
                   <input
                     type={f.type}
                     required
                     value={form[f.key as keyof typeof form]}
                     onChange={(e) => setForm({ ...form, [f.key]: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-border bg-card text-foreground focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all"
+                    onFocus={() => setFocused(f.key)}
+                    onBlur={() => setFocused(null)}
+                    className={inputClass(f.key)}
                     maxLength={200}
                   />
                 </div>
               ))}
               <div>
-                <label className="block text-sm font-medium mb-1.5">Requirement Details</label>
+                <label className="block text-sm font-medium mb-2 text-foreground/80">Requirement Details</label>
                 <textarea
                   required
                   rows={4}
                   value={form.requirements}
                   onChange={(e) => setForm({ ...form, requirements: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl border border-border bg-card text-foreground focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all resize-none"
+                  onFocus={() => setFocused("req")}
+                  onBlur={() => setFocused(null)}
+                  className={`${inputClass("req")} resize-none`}
                   maxLength={1000}
                 />
               </div>
-              <button
+              <motion.button
                 type="submit"
                 disabled={sending}
-                className="inline-flex items-center gap-2 px-8 py-3.5 bg-secondary text-secondary-foreground rounded-xl font-semibold hover:opacity-90 transition-opacity disabled:opacity-50"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="inline-flex items-center gap-2 px-8 py-4 bg-secondary text-secondary-foreground rounded-2xl font-semibold shadow-glow hover:shadow-[0_0_40px_hsl(24_95%_53%/0.3)] transition-all duration-300 disabled:opacity-50"
               >
                 {sending ? "Sending..." : "Submit Enquiry"}
                 <Send className="w-4 h-4" />
-              </button>
+              </motion.button>
             </form>
           </SlideInLeft>
 
           <SlideInRight>
-            <h2 className="font-display text-2xl md:text-3xl font-bold mb-6">Contact Information</h2>
-            <div className="space-y-6">
-              <div className="p-6 rounded-2xl bg-card border border-border shadow-card">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center shrink-0">
-                    <MapPin className="w-5 h-5 text-accent-foreground" />
+            <span className="text-xs font-semibold uppercase tracking-widest text-secondary mb-4 block">Reach us at</span>
+            <h2 className="font-display text-2xl md:text-3xl font-bold mb-8">Contact Information</h2>
+            <div className="space-y-5">
+              {[
+                {
+                  icon: MapPin,
+                  title: "Address",
+                  content: (
+                    <span>SMT LLP PVT LTD<br />Phase III, MIDC, Nighoje, Chakan,<br />Maharashtra 410501</span>
+                  ),
+                },
+                {
+                  icon: Mail,
+                  title: "Email",
+                  content: (
+                    <span>
+                      <a href="mailto:scm@smtllp.com" className="animated-underline hover:text-secondary transition-colors">scm@smtllp.com</a>
+                      <br />
+                      <a href="mailto:pradip.rajguru@smtllp.com" className="animated-underline hover:text-secondary transition-colors">pradip.rajguru@smtllp.com</a>
+                    </span>
+                  ),
+                },
+                {
+                  icon: Phone,
+                  title: "Phone",
+                  content: (
+                    <a href="tel:+919921800933" className="animated-underline hover:text-secondary transition-colors">+91 9921800933</a>
+                  ),
+                },
+              ].map((item) => (
+                <MagneticHover key={item.title}>
+                  <div className="group p-6 rounded-3xl bg-card border border-border/60 shadow-card overflow-hidden relative">
+                    <div className="absolute inset-0 bg-gradient-to-br from-secondary/0 to-secondary/0 group-hover:from-secondary/3 group-hover:to-secondary/6 transition-all duration-500 pointer-events-none" />
+                    <div className="flex items-start gap-4 relative z-10">
+                      <motion.div
+                        whileHover={{ rotate: 10 }}
+                        className="w-11 h-11 rounded-xl bg-accent flex items-center justify-center shrink-0 group-hover:bg-secondary/10 transition-colors duration-300"
+                      >
+                        <item.icon className="w-5 h-5 text-accent-foreground group-hover:text-secondary transition-colors duration-300" />
+                      </motion.div>
+                      <div>
+                        <h4 className="font-semibold mb-1">{item.title}</h4>
+                        <div className="text-sm text-muted-foreground leading-relaxed">{item.content}</div>
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="font-semibold mb-1">Address</h4>
-                    <p className="text-sm text-muted-foreground">
-                      SMT LLP PVT LTD<br />
-                      Phase III, MIDC, Nighoje, Chakan,<br />
-                      Maharashtra 410501
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="p-6 rounded-2xl bg-card border border-border shadow-card">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center shrink-0">
-                    <Mail className="w-5 h-5 text-accent-foreground" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold mb-1">Email</h4>
-                    <p className="text-sm text-muted-foreground">
-                      <a href="mailto:scm@smtllp.com" className="hover:text-secondary transition-colors">scm@smtllp.com</a><br />
-                      <a href="mailto:pradip.rajguru@smtllp.com" className="hover:text-secondary transition-colors">pradip.rajguru@smtllp.com</a>
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="p-6 rounded-2xl bg-card border border-border shadow-card">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center shrink-0">
-                    <Phone className="w-5 h-5 text-accent-foreground" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold mb-1">Phone</h4>
-                    <p className="text-sm text-muted-foreground">
-                      <a href="tel:+919921800933" className="hover:text-secondary transition-colors">+91 9921800933</a>
-                    </p>
-                  </div>
-                </div>
-              </div>
+                </MagneticHover>
+              ))}
             </div>
           </SlideInRight>
         </div>

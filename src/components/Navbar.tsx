@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
+import smtautoLogo from "@/assets/smtauto-logo.png";
 
 const navItems = [
   { label: "Home", path: "/" },
@@ -53,14 +54,13 @@ const Navbar = () => {
     >
       <div className="container max-w-7xl mx-auto flex items-center justify-between h-16 md:h-20 px-4 lg:px-8">
         <Link to="/" className="flex items-center gap-2.5 group">
-          <motion.div
+          <motion.img
+            src={smtautoLogo}
+            alt="SMTAUTO LLP"
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
-          >
-            <span className={`font-display font-bold text-xl transition-colors ${scrolled ? "text-foreground" : "text-primary-foreground"}`}>
-              SMTAUTO <span className="text-secondary">LLP</span>
-            </span>
-          </motion.div>
+            className="h-10 md:h-12 w-auto"
+          />
         </Link>
 
         {/* Desktop Nav */}

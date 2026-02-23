@@ -2,7 +2,7 @@ import { useState, FormEvent } from "react";
 import Layout from "@/components/Layout";
 import { PageSection, PageHero } from "@/components/PageSection";
 import { FadeInUp, SlideInLeft, SlideInRight, MagneticHover } from "@/components/AnimatedSection";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { Mail, Phone, MapPin, Send, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { useToast } from "@/hooks/use-toast";
 

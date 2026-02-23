@@ -2,7 +2,7 @@ import { useState, FormEvent } from "react";
 import Layout from "@/components/Layout";
 import { PageSection, PageHero } from "@/components/PageSection";
 import { FadeInUp, SlideInLeft, SlideInRight, MagneticHover } from "@/components/AnimatedSection";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { Mail, Phone, MapPin, Send, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { useToast } from "@/hooks/use-toast";
 
@@ -143,19 +143,28 @@ const Enquiry = () => {
             <span className="text-xs font-semibold uppercase tracking-widest text-secondary mb-4 block">Find Us</span>
             <h2 className="font-display text-2xl md:text-3xl font-bold">Our Location</h2>
           </div>
-          <div className="rounded-3xl overflow-hidden border border-border/60 shadow-card">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3779.5!2d73.828044!3d18.7306384!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2b7002f11e273%3A0x8eba755ba68173cb!2sSMTAUTO%20SOLTION%20LLP!5e0!3m2!1sen!2sin!4v1700000000000"
-              width="100%"
-              height="450"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="SMTAUTO LLP Location"
-              className="w-full"
+          <a
+            href="https://www.google.com/maps/place/SMTAUTO+SOLTION+LLP/@18.7306384,73.828044,17z"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block rounded-3xl overflow-hidden border border-border/60 shadow-card hover:shadow-card-hover transition-shadow duration-300"
+          >
+            <img
+              src={`https://maps.googleapis.com/maps/api/staticmap?center=18.7306384,73.828044&zoom=15&size=1200x450&scale=2&maptype=roadmap&markers=color:orange%7C18.7306384,73.828044&key=`}
+              alt="SMTAUTO LLP Location - Phase III, MIDC, Nighoje, Chakan"
+              className="w-full h-[450px] object-cover hidden"
             />
-          </div>
+            <div className="w-full h-[450px] bg-muted flex flex-col items-center justify-center gap-4">
+              <MapPin className="w-12 h-12 text-secondary" />
+              <div className="text-center">
+                <h3 className="font-display text-xl font-bold mb-2">SMTAUTO LLP</h3>
+                <p className="text-muted-foreground text-sm">Phase III, MIDC, Nighoje, Chakan, Maharashtra 410501</p>
+                <p className="text-secondary text-sm font-medium mt-3 inline-flex items-center gap-1">
+                  Open in Google Maps <ArrowRight className="w-4 h-4" />
+                </p>
+              </div>
+            </div>
+          </a>
         </FadeInUp>
       </PageSection>
     </Layout>

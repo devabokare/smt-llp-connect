@@ -1,6 +1,6 @@
 import Layout from "@/components/Layout";
-import { PageSection } from "@/components/PageSection";
-import { StaggerContainer, staggerChild, FadeInUp } from "@/components/AnimatedSection";
+import { PageSection, PageHero } from "@/components/PageSection";
+import { StaggerContainer, staggerChild, MagneticHover } from "@/components/AnimatedSection";
 import { motion } from "framer-motion";
 
 const items = [
@@ -12,34 +12,26 @@ const items = [
 
 const Infrastructure = () => (
   <Layout>
-    <section className="bg-navy py-20 md:py-28 px-4">
-      <div className="container max-w-7xl mx-auto text-center">
-        <FadeInUp>
-          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-4">
-            Our <span className="text-secondary">Infrastructure</span>
-          </h1>
-          <p className="text-primary-foreground/60 text-lg max-w-2xl mx-auto">
-            State-of-the-art facilities built for precision manufacturing
-          </p>
-        </FadeInUp>
-      </div>
-    </section>
+    <PageHero title="Our" highlight="Infrastructure" subtitle="State-of-the-art facilities built for precision manufacturing" />
 
     <PageSection>
-      <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-8" staggerDelay={0.12}>
         {items.map((item) => (
-          <motion.div
-            key={item.title}
-            variants={staggerChild}
-            className="rounded-2xl overflow-hidden bg-card border border-border shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1"
-          >
-            <div className="aspect-video bg-muted flex items-center justify-center">
-              <span className="text-muted-foreground text-sm">{item.title} Photo Placeholder</span>
-            </div>
-            <div className="p-6">
-              <h3 className="font-display font-semibold text-xl mb-2">{item.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
-            </div>
+          <motion.div key={item.title} variants={staggerChild}>
+            <MagneticHover>
+              <div className="group rounded-3xl overflow-hidden bg-card border border-border/60 shadow-card h-full">
+                <div className="aspect-video bg-muted overflow-hidden relative">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="text-muted-foreground text-sm">{item.title} Photo</span>
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-foreground/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                </div>
+                <div className="p-7">
+                  <h3 className="font-display font-bold text-xl mb-2">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+                </div>
+              </div>
+            </MagneticHover>
           </motion.div>
         ))}
       </StaggerContainer>

@@ -1,134 +1,269 @@
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import { Cog, Factory, Shield, Eye, ArrowRight, ChevronRight } from "lucide-react";
 import Layout from "@/components/Layout";
-import { FadeInUp, StaggerContainer, staggerChild } from "@/components/AnimatedSection";
+import {
+  FadeInUp,
+  StaggerContainer,
+  staggerChild,
+  TextReveal,
+  AnimatedCounter,
+  MagneticHover,
+  RevealBar,
+  ParallaxSection,
+} from "@/components/AnimatedSection";
 import { PageSection, SectionTitle } from "@/components/PageSection";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const highlights = [
-  { icon: Cog, title: "Advanced Processes", desc: "Stamping, robotic welding, powder coating & assembly capabilities" },
-  { icon: Factory, title: "World-Class Infrastructure", desc: "Heavy duty press lines, in-house tool room & material handling systems" },
-  { icon: Shield, title: "Quality Assurance", desc: "Rigorous testing, R&D center & continuous improvement initiatives" },
-  { icon: Eye, title: "Vision & Mission", desc: "Pioneering solutions in Energy, Automobile & Service sectors" },
+  { icon: Cog, title: "Advanced Processes", desc: "Stamping, robotic welding, powder coating & assembly capabilities", count: 6, suffix: "+" },
+  { icon: Factory, title: "World-Class Infrastructure", desc: "Heavy duty press lines, in-house tool room & material handling", count: 50, suffix: "+" },
+  { icon: Shield, title: "Quality Assurance", desc: "Rigorous testing, R&D center & continuous improvement initiatives", count: 99, suffix: "%" },
+  { icon: Eye, title: "Vision 2028", desc: "Pioneering solutions in Energy, Automobile & Service sectors", count: 300, suffix: " Cr" },
 ];
 
 const Index = () => {
+  const heroRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const heroY = useTransform(scrollYProgress, [0, 1], [0, 200]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+  const heroScale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
+
   return (
     <Layout>
-      {/* Hero */}
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0">
+      {/* Hero — fullscreen with parallax */}
+      <section ref={heroRef} className="relative h-screen flex items-center justify-center overflow-hidden">
+        {/* Parallax background */}
+        <motion.div style={{ y: heroY, scale: heroScale }} className="absolute inset-0">
           <img src={heroBg} alt="Manufacturing facility" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-hero-overlay" />
-        </div>
+        </motion.div>
+        <div className="absolute inset-0 bg-hero-overlay" />
 
-        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+        {/* Animated grid pattern */}
+        <div className="absolute inset-0 bg-grid opacity-10" />
+
+        {/* Floating particles */}
+        {[...Array(5)].map((_, i) => (
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            key={i}
+            className="absolute w-1 h-1 rounded-full bg-secondary/40"
+            style={{ left: `${20 + i * 15}%`, top: `${30 + i * 10}%` }}
+            animate={{
+              y: [-20, 20, -20],
+              opacity: [0.2, 0.6, 0.2],
+            }}
+            transition={{
+              duration: 4 + i,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: i * 0.5,
+            }}
+          />
+        ))}
+
+        <motion.div style={{ opacity: heroOpacity }} className="relative z-10 text-center px-4 max-w-5xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-foreground/10 backdrop-blur-sm border border-primary-foreground/20 text-primary-foreground/80 text-sm mb-6">
-              <span className="w-2 h-2 rounded-full bg-secondary animate-pulse" />
+            <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full glass border border-primary-foreground/15 text-primary-foreground/80 text-sm mb-8">
+              <motion.span
+                animate={{ scale: [1, 1.3, 1] }}
+                transition={{ repeat: Infinity, duration: 2 }}
+                className="w-2 h-2 rounded-full bg-secondary"
+              />
               Precision Engineering & Manufacturing
             </div>
           </motion.div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="font-display text-4xl md:text-6xl lg:text-7xl font-bold text-primary-foreground mb-6 leading-tight"
-          >
-            SMT <span className="text-secondary">LLP</span> Pvt Ltd
-          </motion.h1>
+          <div className="overflow-hidden mb-3">
+            <motion.h1
+              initial={{ y: "100%" }}
+              animate={{ y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className="font-display text-5xl md:text-7xl lg:text-8xl font-bold text-primary-foreground leading-[1.05]"
+            >
+              SMT <span className="text-secondary">LLP</span>
+            </motion.h1>
+          </div>
+          <div className="overflow-hidden mb-8">
+            <motion.h2
+              initial={{ y: "100%" }}
+              animate={{ y: 0 }}
+              transition={{ duration: 0.8, delay: 0.65, ease: [0.22, 1, 0.36, 1] }}
+              className="font-display text-xl md:text-2xl lg:text-3xl font-medium text-primary-foreground/60"
+            >
+              Pvt Ltd
+            </motion.h2>
+          </div>
 
           <motion.p
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-lg md:text-xl text-primary-foreground/70 mb-10 max-w-2xl mx-auto leading-relaxed"
+            transition={{ duration: 0.7, delay: 0.9 }}
+            className="text-base md:text-lg text-primary-foreground/50 mb-12 max-w-2xl mx-auto leading-relaxed"
           >
             Integrating advanced technologies with precision engineering for cost-effective, reliable, and future-ready manufacturing solutions.
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
+            transition={{ duration: 0.7, delay: 1.1 }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <Link
-              to="/enquiry"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-secondary text-secondary-foreground rounded-xl font-semibold hover:opacity-90 transition-opacity text-base"
-            >
-              Sales Enquiry
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-            <Link
-              to="/careers"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary-foreground/10 text-primary-foreground border border-primary-foreground/20 rounded-xl font-semibold hover:bg-primary-foreground/20 transition-colors text-base backdrop-blur-sm"
-            >
-              Careers
-              <ChevronRight className="w-4 h-4" />
-            </Link>
+            <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+              <Link
+                to="/enquiry"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-secondary text-secondary-foreground rounded-2xl font-semibold text-base shadow-glow hover:shadow-[0_0_40px_hsl(24_95%_53%/0.3)] transition-all duration-300"
+              >
+                Sales Enquiry
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </motion.div>
+            <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+              <Link
+                to="/careers"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 glass border border-primary-foreground/15 text-primary-foreground rounded-2xl font-semibold text-base hover:bg-primary-foreground/10 transition-all duration-300"
+              >
+                Careers
+                <ChevronRight className="w-4 h-4" />
+              </Link>
+            </motion.div>
           </motion.div>
-        </div>
+        </motion.div>
 
         {/* Scroll indicator */}
         <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ repeat: Infinity, duration: 2 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5 }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10"
         >
-          <div className="w-6 h-10 rounded-full border-2 border-primary-foreground/30 flex items-start justify-center p-1.5">
-            <div className="w-1.5 h-2.5 rounded-full bg-primary-foreground/50" />
-          </div>
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+          >
+            <div className="w-7 h-11 rounded-full border-2 border-primary-foreground/25 flex items-start justify-center p-2">
+              <motion.div
+                animate={{ y: [0, 12, 0], opacity: [1, 0.3, 1] }}
+                transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                className="w-1.5 h-2.5 rounded-full bg-primary-foreground/50"
+              />
+            </div>
+          </motion.div>
         </motion.div>
+
+        {/* Bottom gradient */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
       </section>
 
-      {/* Highlights */}
-      <PageSection>
-        <SectionTitle title="Why SMT LLP?" subtitle="Delivering excellence across every facet of manufacturing" />
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {/* Stats Bar */}
+      <PageSection className="!py-0 -mt-16 relative z-20">
+        <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-4" staggerDelay={0.1}>
           {highlights.map((h) => (
             <motion.div
               key={h.title}
               variants={staggerChild}
-              className="group p-6 rounded-2xl bg-card border border-border shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1"
+              className="group relative p-6 md:p-8 rounded-2xl bg-card border border-border/60 shadow-elevated overflow-hidden hover:shadow-card-hover transition-all duration-500"
             >
-              <div className="w-12 h-12 rounded-xl bg-accent flex items-center justify-center mb-4 group-hover:bg-secondary group-hover:text-secondary-foreground transition-colors">
-                <h.icon className="w-6 h-6 text-accent-foreground group-hover:text-secondary-foreground" />
+              {/* Hover gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-secondary/0 to-secondary/0 group-hover:from-secondary/5 group-hover:to-secondary/10 transition-all duration-500 pointer-events-none" />
+
+              <div className="relative z-10">
+                <motion.div
+                  whileHover={{ rotate: 10, scale: 1.1 }}
+                  className="w-12 h-12 rounded-xl bg-accent flex items-center justify-center mb-4 group-hover:bg-secondary/10 transition-colors duration-300"
+                >
+                  <h.icon className="w-6 h-6 text-accent-foreground group-hover:text-secondary transition-colors duration-300" />
+                </motion.div>
+
+                <div className="font-display text-3xl md:text-4xl font-bold mb-1 text-foreground">
+                  <AnimatedCounter target={h.count} suffix={h.suffix} />
+                </div>
+
+                <h3 className="font-display font-semibold text-sm mb-1.5 text-foreground">{h.title}</h3>
+                <p className="text-xs text-muted-foreground leading-relaxed hidden md:block">{h.desc}</p>
               </div>
-              <h3 className="font-display font-semibold text-lg mb-2">{h.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{h.desc}</p>
             </motion.div>
           ))}
         </StaggerContainer>
       </PageSection>
 
-      {/* CTA */}
-      <PageSection dark>
-        <div className="text-center">
+      {/* About Preview */}
+      <PageSection>
+        <div className="grid md:grid-cols-2 gap-16 items-center">
           <FadeInUp>
-            <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">Ready to Partner With Us?</h2>
-            <p className="text-primary-foreground/60 mb-8 max-w-xl mx-auto">
-              Let's discuss how SMT LLP can deliver precision manufacturing solutions for your business.
+            <span className="text-xs font-semibold uppercase tracking-widest text-secondary mb-4 block">About SMT LLP</span>
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+              Engineering the <span className="text-gradient">Future</span> of Manufacturing
+            </h2>
+            <p className="text-muted-foreground leading-relaxed mb-6">
+              With cutting-edge technologies and decades of expertise, SMT LLP delivers cost-effective, reliable, and future-ready manufacturing solutions for the energy, automobile, and service sectors.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                to="/enquiry"
-                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-secondary text-secondary-foreground rounded-xl font-semibold hover:opacity-90 transition-opacity"
-              >
-                Sales Enquiry <ArrowRight className="w-4 h-4" />
-              </Link>
+            <motion.div whileHover={{ x: 5 }} className="inline-block">
               <Link
                 to="/about"
-                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 border border-primary-foreground/20 text-primary-foreground rounded-xl font-semibold hover:bg-primary-foreground/10 transition-colors"
+                className="inline-flex items-center gap-2 text-secondary font-semibold text-sm group"
               >
-                Learn More
+                Learn more about us
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
+            </motion.div>
+          </FadeInUp>
+
+          <FadeInUp delay={0.15}>
+            <div className="relative">
+              <div className="aspect-[4/3] rounded-3xl bg-muted border border-border overflow-hidden flex items-center justify-center">
+                <span className="text-muted-foreground text-sm">Company Overview Photo</span>
+              </div>
+              {/* Decorative elements */}
+              <div className="absolute -bottom-4 -right-4 w-24 h-24 rounded-2xl border-2 border-secondary/20 -z-10" />
+              <div className="absolute -top-4 -left-4 w-16 h-16 rounded-xl bg-secondary/10 -z-10" />
+            </div>
+          </FadeInUp>
+        </div>
+      </PageSection>
+
+      {/* CTA */}
+      <PageSection dark className="!bg-navy bg-grid">
+        <div className="text-center max-w-3xl mx-auto">
+          <FadeInUp>
+            <span className="text-xs font-semibold uppercase tracking-widest text-secondary mb-4 block">Partner with us</span>
+          </FadeInUp>
+          <FadeInUp delay={0.1}>
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-5 text-primary-foreground leading-tight">
+              Ready to Transform Your Manufacturing?
+            </h2>
+          </FadeInUp>
+          <FadeInUp delay={0.2}>
+            <p className="text-primary-foreground/45 mb-10 text-lg leading-relaxed">
+              Let's discuss how SMT LLP can deliver precision manufacturing solutions for your business.
+            </p>
+          </FadeInUp>
+          <FadeInUp delay={0.3}>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+                <Link
+                  to="/enquiry"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-secondary text-secondary-foreground rounded-2xl font-semibold shadow-glow hover:shadow-[0_0_40px_hsl(24_95%_53%/0.3)] transition-all duration-300"
+                >
+                  Sales Enquiry <ArrowRight className="w-4 h-4" />
+                </Link>
+              </motion.div>
+              <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+                <Link
+                  to="/about"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-primary-foreground/15 text-primary-foreground rounded-2xl font-semibold hover:bg-primary-foreground/5 transition-all duration-300"
+                >
+                  Learn More
+                </Link>
+              </motion.div>
             </div>
           </FadeInUp>
         </div>

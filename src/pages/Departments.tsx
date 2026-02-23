@@ -1,6 +1,6 @@
 import Layout from "@/components/Layout";
-import { PageSection, SectionTitle } from "@/components/PageSection";
-import { StaggerContainer, staggerChild, FadeInUp } from "@/components/AnimatedSection";
+import { PageSection, PageHero } from "@/components/PageSection";
+import { StaggerContainer, staggerChild, MagneticHover } from "@/components/AnimatedSection";
 import { motion } from "framer-motion";
 import { Package, Factory, Settings, FlaskConical, Shield, Link2, ShoppingCart, Users, Calculator } from "lucide-react";
 
@@ -18,32 +18,27 @@ const departments = [
 
 const Departments = () => (
   <Layout>
-    <section className="bg-navy py-20 md:py-28 px-4">
-      <div className="container max-w-7xl mx-auto text-center">
-        <FadeInUp>
-          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-4">
-            Our <span className="text-secondary">Departments</span>
-          </h1>
-          <p className="text-primary-foreground/60 text-lg max-w-2xl mx-auto">
-            Cross-functional teams working together to deliver excellence
-          </p>
-        </FadeInUp>
-      </div>
-    </section>
+    <PageHero title="Our" highlight="Departments" subtitle="Cross-functional teams working together to deliver excellence" />
 
     <PageSection>
-      <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" staggerDelay={0.08}>
         {departments.map((d) => (
-          <motion.div
-            key={d.title}
-            variants={staggerChild}
-            className="group p-6 rounded-2xl bg-card border border-border shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1"
-          >
-            <div className="w-12 h-12 rounded-xl bg-accent flex items-center justify-center mb-4 group-hover:bg-secondary transition-colors">
-              <d.icon className="w-6 h-6 text-accent-foreground group-hover:text-secondary-foreground" />
-            </div>
-            <h3 className="font-display font-semibold text-lg mb-2">{d.title}</h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">{d.desc}</p>
+          <motion.div key={d.title} variants={staggerChild}>
+            <MagneticHover>
+              <div className="group relative p-7 rounded-3xl bg-card border border-border/60 shadow-card overflow-hidden h-full">
+                <div className="absolute inset-0 bg-gradient-to-br from-secondary/0 to-secondary/0 group-hover:from-secondary/3 group-hover:to-secondary/6 transition-all duration-500 pointer-events-none" />
+                <div className="relative z-10">
+                  <motion.div
+                    whileHover={{ rotate: 10, scale: 1.1 }}
+                    className="w-13 h-13 rounded-xl bg-accent flex items-center justify-center mb-5 group-hover:bg-secondary/10 transition-colors duration-300 w-[52px] h-[52px]"
+                  >
+                    <d.icon className="w-6 h-6 text-accent-foreground group-hover:text-secondary transition-colors duration-300" />
+                  </motion.div>
+                  <h3 className="font-display font-bold text-lg mb-2">{d.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{d.desc}</p>
+                </div>
+              </div>
+            </MagneticHover>
           </motion.div>
         ))}
       </StaggerContainer>

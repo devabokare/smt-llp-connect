@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin, Linkedin, Facebook, ArrowUpRight } from "lucide-react";
 import { FadeInUp, StaggerContainer, staggerChild } from "./AnimatedSection";
 import { motion } from "framer-motion";
-import smtLogo from "@/assets/smt_logo.png";
+
 
 const Footer = () => (
   <footer className="relative bg-navy text-primary-foreground overflow-hidden">
@@ -14,8 +14,10 @@ const Footer = () => (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
         {/* Company */}
         <FadeInUp>
-          <div className="mb-5">
-            <img src={smtLogo} alt="SMTAUTO LLP" className="h-12 w-auto brightness-0 invert" />
+          <div className="flex items-center gap-2.5 mb-5">
+            <span className="font-display font-bold text-xl">
+              SMTAUTO <span className="text-secondary">LLP</span>
+            </span>
           </div>
           <p className="text-sm text-primary-foreground/45 leading-relaxed mb-6">
             Forward-looking manufacturing solutions provider, integrating advanced technologies with precision engineering.

@@ -242,6 +242,38 @@ const Index = () => {
         </FadeInUp>
       </PageSection>
 
+      {/* Our Clients */}
+      <PageSection>
+        <SectionTitle title="Our Clients" subtitle="Trusted by leading brands across industries" />
+        <div className="relative overflow-hidden">
+          {/* Fade edges */}
+          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
+
+          <motion.div
+            className="flex gap-12 items-center"
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+          >
+            {[...Array(2)].map((_, setIdx) => (
+              <div key={setIdx} className="flex gap-12 items-center shrink-0">
+                {[
+                  "Tata Motors", "Mahindra", "Bajaj Auto", "Ashok Leyland",
+                  "John Deere", "Cummins", "Kirloskar", "L&T",
+                ].map((client) => (
+                  <div
+                    key={`${setIdx}-${client}`}
+                    className="flex items-center justify-center h-20 w-40 shrink-0 rounded-2xl border border-border/60 bg-card px-6 py-4 grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300"
+                  >
+                    <span className="text-sm font-semibold text-muted-foreground whitespace-nowrap">{client}</span>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </motion.div>
+        </div>
+      </PageSection>
+
       {/* CTA */}
       <PageSection dark className="!bg-navy bg-grid">
         <div className="text-center max-w-3xl mx-auto">

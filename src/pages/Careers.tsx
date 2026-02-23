@@ -68,7 +68,7 @@ const Careers = () => {
 
       {/* Openings */}
       <PageSection alt>
-        <SectionTitle title="Current Openings" subtitle="Explore career opportunities at SMT LLP" />
+        <SectionTitle title="Current Openings" subtitle="Explore career opportunities at SMTAUTO LLP" />
         <StaggerContainer className="space-y-4 max-w-3xl mx-auto" staggerDelay={0.1}>
           {openings.map((o) => (
             <motion.div key={o.title} variants={staggerChild}>

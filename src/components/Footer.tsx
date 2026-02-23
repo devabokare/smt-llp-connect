@@ -18,7 +18,7 @@ const Footer = () => (
               <span className="font-display font-bold text-secondary-foreground text-lg">S</span>
             </div>
             <span className="font-display font-bold text-xl">
-              SMT <span className="text-secondary">LLP</span>
+              SMTAUTO <span className="text-secondary">LLP</span>
             </span>
           </div>
           <p className="text-sm text-primary-foreground/45 leading-relaxed mb-6">
@@ -108,7 +108,7 @@ const Footer = () => (
 
     <div className="border-t border-primary-foreground/8">
       <div className="container max-w-7xl mx-auto px-4 py-6 flex flex-col md:flex-row justify-between items-center gap-3 text-xs text-primary-foreground/30">
-        <span>© {new Date().getFullYear()} SMT LLP Pvt Ltd. All rights reserved.</span>
+        <span>© {new Date().getFullYear()} SMTAUTO LLP Pvt Ltd. All rights reserved.</span>
         <span className="text-primary-foreground/20">Precision Engineering · Innovation · Excellence</span>
       </div>
     </div>

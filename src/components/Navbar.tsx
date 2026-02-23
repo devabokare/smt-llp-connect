@@ -61,7 +61,7 @@ const Navbar = () => {
             <span className="font-display font-bold text-secondary-foreground text-lg">S</span>
           </motion.div>
           <span className={`font-display font-bold text-xl transition-colors ${scrolled ? "text-foreground" : "text-primary-foreground"}`}>
-            SMT <span className="text-secondary">LLP</span>
+            SMTAUTO <span className="text-secondary">LLP</span>
           </span>
         </Link>
 

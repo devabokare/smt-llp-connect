@@ -88,11 +88,11 @@ const Index = () => {
               transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
               className="font-display text-5xl md:text-7xl lg:text-8xl font-bold text-primary-foreground leading-[1.05]"
             >
-              SMT <span className="text-secondary">LLP</span>
+              SMTAUTO <span className="text-secondary">LLP</span>
             </motion.h1>
           </div>
           <div className="overflow-hidden mb-8">
-            <motion.h2
+           <motion.h2
               initial={{ y: "100%" }}
               animate={{ y: 0 }}
               transition={{ duration: 0.8, delay: 0.65, ease: [0.22, 1, 0.36, 1] }}
@@ -199,12 +199,12 @@ const Index = () => {
       <PageSection>
         <div className="grid md:grid-cols-2 gap-16 items-center">
           <FadeInUp>
-            <span className="text-xs font-semibold uppercase tracking-widest text-secondary mb-4 block">About SMT LLP</span>
+            <span className="text-xs font-semibold uppercase tracking-widest text-secondary mb-4 block">About SMTAUTO LLP</span>
             <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
               Engineering the <span className="text-gradient">Future</span> of Manufacturing
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
-              With cutting-edge technologies and decades of expertise, SMT LLP delivers cost-effective, reliable, and future-ready manufacturing solutions for the energy, automobile, and service sectors.
+              With cutting-edge technologies and decades of expertise, SMTAUTO LLP delivers cost-effective, reliable, and future-ready manufacturing solutions for the energy, automobile, and service sectors.
             </p>
             <motion.div whileHover={{ x: 5 }} className="inline-block">
               <Link
@@ -232,7 +232,7 @@ const Index = () => {
 
       {/* Video Section */}
       <PageSection alt>
-        <SectionTitle title="See Us in Action" subtitle="Watch how SMT LLP delivers precision manufacturing excellence" />
+        <SectionTitle title="See Us in Action" subtitle="Watch how SMTAUTO LLP delivers precision manufacturing excellence" />
         <FadeInUp>
           <div className="max-w-4xl mx-auto">
             <div className="relative aspect-video rounded-3xl overflow-hidden shadow-elevated border border-border/60">
@@ -265,7 +265,7 @@ const Index = () => {
           </FadeInUp>
           <FadeInUp delay={0.2}>
             <p className="text-primary-foreground/45 mb-10 text-lg leading-relaxed">
-              Let's discuss how SMT LLP can deliver precision manufacturing solutions for your business.
+              Let's discuss how SMTAUTO LLP can deliver precision manufacturing solutions for your business.
             </p>
           </FadeInUp>
           <FadeInUp delay={0.3}>

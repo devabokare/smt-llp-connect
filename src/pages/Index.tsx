@@ -91,16 +91,6 @@ const Index = () => {
               SMTAUTO <span className="text-secondary">LLP</span>
             </motion.h1>
           </div>
-          <div className="overflow-hidden mb-8">
-           <motion.h2
-              initial={{ y: "100%" }}
-              animate={{ y: 0 }}
-              transition={{ duration: 0.8, delay: 0.65, ease: [0.22, 1, 0.36, 1] }}
-              className="font-display text-xl md:text-2xl lg:text-3xl font-medium text-primary-foreground/60"
-            >
-              Pvt Ltd
-            </motion.h2>
-          </div>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}

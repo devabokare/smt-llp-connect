@@ -62,7 +62,7 @@ const Index = () => {
         <motion.div style={{ y: heroY, scale: heroScale }} className="absolute inset-0">
           <video src={heroVideo} autoPlay muted loop playsInline className="w-full h-full object-cover" />
         </motion.div>
-        <div className="absolute inset-0 bg-hero-overlay" />
+        <div className="absolute inset-0 bg-black/60" />
 
         {/* Animated grid pattern */}
         <div className="absolute inset-0 bg-grid opacity-10" />

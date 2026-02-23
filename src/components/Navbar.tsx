@@ -17,7 +17,7 @@ const navItems = [
     ],
   },
   { label: "Quality & R&D", path: "/quality" },
-  { label: "Enquiry", path: "/enquiry" },
+  { label: "Contact", path: "/contact" },
   { label: "Careers", path: "/careers" },
 ];
 
@@ -134,7 +134,7 @@ const Navbar = () => {
           )}
           <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
             <Link
-              to="/enquiry"
+              to="/contact"
               className="ml-4 px-6 py-2.5 bg-secondary text-secondary-foreground rounded-xl text-sm font-semibold hover:shadow-glow transition-all duration-300"
             >
               Get a Quote
@@ -201,7 +201,7 @@ const Navbar = () => {
               )}
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}>
                 <Link
-                  to="/enquiry"
+                  to="/contact"
                   className="block mx-4 mt-4 text-center px-5 py-3 bg-secondary text-secondary-foreground rounded-xl text-sm font-semibold shadow-glow"
                 >
                   Get a Quote

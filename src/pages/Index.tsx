@@ -15,6 +15,7 @@ import {
 } from "@/components/AnimatedSection";
 import { PageSection, SectionTitle } from "@/components/PageSection";
 import heroVideo from "@/assets/hero-video.mp4";
+import companyOverviewImg from "@/assets/company-overview.png";
 import renomLogo from "@/assets/clients/renom.png";
 import ultraLogo from "@/assets/clients/ultra-engineers.png";
 import aamLogo from "@/assets/clients/aam.png";
@@ -230,8 +231,8 @@ const Index = () => {
 
           <FadeInUp delay={0.15}>
             <div className="relative">
-              <div className="aspect-[4/3] rounded-3xl bg-muted border border-border overflow-hidden flex items-center justify-center">
-                <span className="text-muted-foreground text-sm">Company Overview Photo</span>
+              <div className="aspect-[4/3] rounded-3xl bg-muted border border-border overflow-hidden">
+                <img src={companyOverviewImg} alt="SMTAUTO company overview - robotic manufacturing" className="w-full h-full object-cover" />
               </div>
               {/* Decorative elements */}
               <div className="absolute -bottom-4 -right-4 w-24 h-24 rounded-2xl border-2 border-secondary/20 -z-10" />

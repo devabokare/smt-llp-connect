@@ -15,6 +15,7 @@ import {
 } from "@/components/AnimatedSection";
 import { PageSection, SectionTitle } from "@/components/PageSection";
 import heroVideo from "@/assets/hero-video.mp4";
+import companyOverviewImg from "@/assets/company-overview.png";
 import renomLogo from "@/assets/clients/renom.png";
 import ultraLogo from "@/assets/clients/ultra-engineers.png";
 import aamLogo from "@/assets/clients/aam.png";

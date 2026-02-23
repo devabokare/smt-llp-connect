@@ -29,7 +29,7 @@ const Enquiry = () => {
 
   return (
     <Layout>
-      <PageHero title="Sales" highlight="Enquiry" subtitle="Get in touch with our team for manufacturing solutions" />
+      <PageHero title="Contact" highlight="Us" subtitle="Get in touch with our team for manufacturing solutions" />
 
       <PageSection>
         <div className="grid md:grid-cols-2 gap-16">

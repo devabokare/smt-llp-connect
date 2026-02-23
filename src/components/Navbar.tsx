@@ -201,7 +201,7 @@ const Navbar = () => {
               )}
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}>
                 <Link
-                  to="/enquiry"
+                  to="/contact"
                   className="block mx-4 mt-4 text-center px-5 py-3 bg-secondary text-secondary-foreground rounded-xl text-sm font-semibold shadow-glow"
                 >
                   Get a Quote

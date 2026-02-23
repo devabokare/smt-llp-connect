@@ -134,7 +134,7 @@ const Navbar = () => {
           )}
           <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
             <Link
-              to="/enquiry"
+              to="/contact"
               className="ml-4 px-6 py-2.5 bg-secondary text-secondary-foreground rounded-xl text-sm font-semibold hover:shadow-glow transition-all duration-300"
             >
               Get a Quote

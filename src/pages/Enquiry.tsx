@@ -92,7 +92,7 @@ const Enquiry = () => {
                   icon: MapPin,
                   title: "Address",
                   content: (
-                    <span>SMT LLP PVT LTD<br />Phase III, MIDC, Nighoje, Chakan,<br />Maharashtra 410501</span>
+                    <span>SMTAUTO LLP PVT LTD<br />Phase III, MIDC, Nighoje, Chakan,<br />Maharashtra 410501</span>
                   ),
                 },
                 {

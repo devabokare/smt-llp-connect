@@ -12,7 +12,7 @@ const coreValues = [
 
 const About = () => (
   <Layout>
-    <PageHero title="About" highlight="SMT LLP" subtitle="A forward-looking manufacturing solutions provider, integrating advanced technologies with precision engineering." />
+    <PageHero title="About" highlight="SMTAUTO LLP" subtitle="A forward-looking manufacturing solutions provider, integrating advanced technologies with precision engineering." />
 
     {/* Overview */}
     <PageSection>
@@ -22,7 +22,7 @@ const About = () => (
           <h2 className="font-display text-3xl md:text-4xl font-bold mb-6 leading-tight">Company Overview</h2>
           <RevealBar className="w-12 mb-6" />
           <p className="text-muted-foreground leading-relaxed mb-4">
-            SMT LLP is a forward-looking manufacturing solutions provider, integrating advanced technologies with precision engineering. With the new technologies, SMT LLP ensures cost-effective, reliable, and future-ready manufacturing solutions for diverse industries.
+            SMTAUTO LLP is a forward-looking manufacturing solutions provider, integrating advanced technologies with precision engineering. With the new technologies, SMTAUTO LLP ensures cost-effective, reliable, and future-ready manufacturing solutions for diverse industries.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Our commitment to innovation and quality has positioned us as a trusted partner for industries seeking cutting-edge manufacturing capabilities.
@@ -48,7 +48,7 @@ const About = () => (
           {
             icon: Target,
             title: "Our Vision",
-            text: "At SMT LLP, our vision is to be a pioneering force in the Energy, Automobile, and Service sectors by delivering innovative, efficient, and sustainable solutions that empower industries and communities worldwide. We aspire to achieve ₹300 Cr by 2028 while driving progress toward a greener, safer, and sustainable future.",
+            text: "At SMTAUTO LLP, our vision is to be a pioneering force in the Energy, Automobile, and Service sectors by delivering innovative, efficient, and sustainable solutions that empower industries and communities worldwide. We aspire to achieve ₹300 Cr by 2028 while driving progress toward a greener, safer, and sustainable future.",
           },
           {
             icon: Rocket,

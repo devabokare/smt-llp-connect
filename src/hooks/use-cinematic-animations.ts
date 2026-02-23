@@ -106,12 +106,12 @@ export function useCinematicAnimations() {
       });
     });
 
-    // ── 7. Subtle mouse-move interaction ──
+    // ── 7. Subtle mouse-move interaction (desktop only) ──
+    const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
     const onMouseMove = (e: MouseEvent) => {
       const xRatio = (e.clientX / window.innerWidth - 0.5) * 2;
       const yRatio = (e.clientY / window.innerHeight - 0.5) * 2;
 
-      // Move elements with data-parallax-mouse attribute
       const els = document.querySelectorAll<HTMLElement>("[data-parallax-mouse]");
       els.forEach((el) => {
         const speed = parseFloat(el.dataset.parallaxMouse || "8");
@@ -123,7 +123,6 @@ export function useCinematicAnimations() {
         });
       });
 
-      // Very subtle body-level shift for depth
       gsap.to("main", {
         x: xRatio * 1.5,
         y: yRatio * 1,
@@ -132,7 +131,9 @@ export function useCinematicAnimations() {
       });
     };
 
-    window.addEventListener("mousemove", onMouseMove);
+    if (!isTouchDevice) {
+      window.addEventListener("mousemove", onMouseMove);
+    }
 
     // ── Cleanup ──
     return () => {

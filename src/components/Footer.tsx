@@ -15,7 +15,7 @@ const Footer = () => (
         {/* Company */}
         <FadeInUp>
           <div className="mb-5">
-            <img src={smtautoLogo} alt="SMTAUTO LLP" className="h-12 w-auto brightness-0 invert" />
+            <img src={smtautoLogo} alt="SMTAUTO LLP" className="h-16 w-auto brightness-0 invert" />
           </div>
           <p className="text-sm text-primary-foreground/45 leading-relaxed mb-6">
             Forward-looking manufacturing solutions provider, integrating advanced technologies with precision engineering.

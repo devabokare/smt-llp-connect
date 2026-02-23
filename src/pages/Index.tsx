@@ -230,6 +230,28 @@ const Index = () => {
         </div>
       </PageSection>
 
+      {/* Video Section */}
+      <PageSection alt>
+        <SectionTitle title="See Us in Action" subtitle="Watch how SMT LLP delivers precision manufacturing excellence" />
+        <FadeInUp>
+          <div className="max-w-4xl mx-auto">
+            <div className="relative aspect-video rounded-3xl overflow-hidden shadow-elevated border border-border/60">
+              <iframe
+                width="100%"
+                height="100%"
+                src="https://www.youtube.com/embed/9TYPQNbNYnI?si=1tBRvcAzZl3dX3ZB"
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+                className="absolute inset-0 w-full h-full"
+              />
+            </div>
+          </div>
+        </FadeInUp>
+      </PageSection>
+
       {/* CTA */}
       <PageSection dark className="!bg-navy bg-grid">
         <div className="text-center max-w-3xl mx-auto">

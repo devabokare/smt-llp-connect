@@ -136,6 +136,28 @@ const Enquiry = () => {
           </SlideInRight>
         </div>
       </PageSection>
+
+      <PageSection alt>
+        <FadeInUp>
+          <div className="text-center mb-10">
+            <span className="text-xs font-semibold uppercase tracking-widest text-secondary mb-4 block">Find Us</span>
+            <h2 className="font-display text-2xl md:text-3xl font-bold">Our Location</h2>
+          </div>
+          <div className="rounded-3xl overflow-hidden border border-border/60 shadow-card">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3779.5!2d73.828044!3d18.7306384!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2b7002f11e273%3A0x8eba755ba68173cb!2sSMTAUTO%20SOLTION%20LLP!5e0!3m2!1sen!2sin!4v1700000000000"
+              width="100%"
+              height="450"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="SMTAUTO LLP Location"
+              className="w-full"
+            />
+          </div>
+        </FadeInUp>
+      </PageSection>
     </Layout>
   );
 };

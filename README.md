@@ -28,7 +28,7 @@ You need [Node.js](https://nodejs.org/) installed on your machine.
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+  (https://github.com/devabokare/smt-llp-connect.git)
    ```
 
 2. Navigate into the project directory:
@@ -76,3 +76,4 @@ npm run preview
 ## License
 
 This is a proprietary project for SMTAUTO LLP.
+
